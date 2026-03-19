@@ -17,11 +17,12 @@ public class Anime implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private  Long id;
+    private Long id;
 
     private String titulo;
     private String genero;
     private String anoLancamento;
+    private String estudio;
     private Double notaPessoal;
     private Boolean assistido;
 
@@ -31,11 +32,12 @@ public class Anime implements Serializable {
     public Anime() {
     }
 
-    public Anime(Long id, String titulo, String genero, String anoLancamento, Double notaPessoal, Boolean assistido) {
+    public Anime(Long id, String titulo, String genero, String anoLancamento, String estudio, Double notaPessoal, Boolean assistido) {
         this.id = id;
         this.titulo = titulo;
         this.genero = genero;
         this.anoLancamento = anoLancamento;
+        this.estudio = estudio;
         this.notaPessoal = notaPessoal;
         this.assistido = assistido;
     }
@@ -73,6 +75,14 @@ public class Anime implements Serializable {
 
     public void setAnoLancamento(String anoLancamento) {
         this.anoLancamento = anoLancamento;
+    }
+
+    public String getEstudio() {
+        return estudio;
+    }
+
+    public void setEstudio(String estudio) {
+        this.estudio = estudio;
     }
 
     public Double getNotaPessoal() {
