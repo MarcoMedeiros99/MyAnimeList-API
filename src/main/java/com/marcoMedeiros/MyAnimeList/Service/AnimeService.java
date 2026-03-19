@@ -22,4 +22,8 @@ public class AnimeService {
         Optional<Anime> obj = repository.findById(id);
         return obj.orElse(null);
     }
+
+    public Anime insert(Anime obj){
+       return repository.save(obj);
+    }
 }
