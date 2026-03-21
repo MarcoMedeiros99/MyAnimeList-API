@@ -19,8 +19,8 @@ public class TestConfig implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        Anime anime1 = new Anime(null, "Jujutsu Kaisen", "Shounen", "2020", "MAPPA", 9.2, true);
-        Anime anime2 = new Anime(null, "Shingeki no Kyojin", "Shounen / Seinen", "2013", "WIT Studio / MAPPA", 10.0, true);
+        Anime anime1 = new Anime(null, "Jujutsu Kaisen", "Shounen", 2020, "MAPPA", 9.2, true);
+        Anime anime2 = new Anime(null, "Shingeki no Kyojin", "Shounen / Seinen", 2013, "WIT Studio / MAPPA", 10.0, true);
 
         animeRepository.saveAll(Arrays.asList(anime1, anime2));
 

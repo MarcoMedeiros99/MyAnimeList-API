@@ -1,6 +1,7 @@
 package com.marcoMedeiros.MyAnimeList.Model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -19,11 +20,25 @@ public class Anime implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank(message = "The title is mandatory and cannot consist solely of numbers.")
     private String titulo;
+
+    @NotBlank(message = "Gender is mandatory.")
     private String genero;
-    private String anoLancamento;
+
+    @NotNull(message = "The release year is required.")
+    @Min(value = 1900, message = "Invalid Release Year.")
+    private Integer anoLancamento;
+
+    @NotBlank(message = "The studio is mandatory.")
     private String estudio;
+
+    @NotNull(message = "A grade is required")
+    @DecimalMin(value = "0.0", message = "The minimum grade is 0.0")
+    @DecimalMax(value = "10.0", message = "The maximum grade is 10.0")
     private Double notaPessoal;
+
+    @NotNull(message = "Assisted field training is mandatory.")
     private Boolean assistido;
 
     //Constructors
@@ -32,7 +47,7 @@ public class Anime implements Serializable {
     public Anime() {
     }
 
-    public Anime(Long id, String titulo, String genero, String anoLancamento, String estudio, Double notaPessoal, Boolean assistido) {
+    public Anime(Long id, String titulo, String genero, Integer anoLancamento, String estudio, Double notaPessoal, Boolean assistido) {
         this.id = id;
         this.titulo = titulo;
         this.genero = genero;
@@ -69,11 +84,11 @@ public class Anime implements Serializable {
         this.genero = genero;
     }
 
-    public String getAnoLancamento() {
+    public Integer getAnoLancamento() {
         return anoLancamento;
     }
 
-    public void setAnoLancamento(String anoLancamento) {
+    public void setAnoLancamento(Integer anoLancamento) {
         this.anoLancamento = anoLancamento;
     }
 
