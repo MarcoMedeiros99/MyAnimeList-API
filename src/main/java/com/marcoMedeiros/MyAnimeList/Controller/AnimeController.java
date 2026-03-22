@@ -2,6 +2,7 @@ package com.marcoMedeiros.MyAnimeList.Controller;
 
 import com.marcoMedeiros.MyAnimeList.Model.Anime;
 import com.marcoMedeiros.MyAnimeList.Service.AnimeService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.weaving.LoadTimeWeaverAware;
 import org.springframework.http.ResponseEntity;
@@ -34,10 +35,10 @@ public class AnimeController {
     }
 
     @PostMapping
-    public ResponseEntity<Anime> insert(@RequestBody Anime obj){
-        service.insert(obj);
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
-        return ResponseEntity.created(uri).body(obj);
+    public ResponseEntity<Anime> insert(@Valid @RequestBody Anime obj){
+        Anime newObj = service.insert(obj);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(newObj.getId()).toUri();
+        return ResponseEntity.created(uri).body(newObj);
     }
 
     @PutMapping(value = "/{id}")

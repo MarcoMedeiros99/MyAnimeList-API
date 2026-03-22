@@ -24,10 +24,10 @@ public class AnimeService {
         return repository.findAll();
     }
 
-    //Não está retornando o erro 404 para o get id de id não existente
+    //ok
     public Anime findById(Long id) {
         Optional<Anime> obj = repository.findById(id);
-        return obj.orElse(null);
+        return obj.orElseThrow(() -> new ResourceNotFoundException(id));
     }
 
     public Anime insert(Anime obj) {
