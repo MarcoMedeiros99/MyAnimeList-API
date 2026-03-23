@@ -1,5 +1,6 @@
 package com.marcoMedeiros.MyAnimeList.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 
@@ -10,6 +11,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "tb_anime")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Anime implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
