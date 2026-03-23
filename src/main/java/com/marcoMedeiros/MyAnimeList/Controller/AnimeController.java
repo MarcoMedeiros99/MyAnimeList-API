@@ -23,8 +23,8 @@ public class AnimeController {
     private LoadTimeWeaverAware loadTimeWeaverAware;
 
     @GetMapping
-    public ResponseEntity<List<Anime>> findAll(){
-        List<Anime> listAnime = service.findAll();
+    public ResponseEntity<List<Anime>> findAll(@RequestParam(required = false) Boolean assistido){
+        List<Anime> listAnime = service.findAll(assistido);
         return ResponseEntity.ok().body(listAnime);
     }
 

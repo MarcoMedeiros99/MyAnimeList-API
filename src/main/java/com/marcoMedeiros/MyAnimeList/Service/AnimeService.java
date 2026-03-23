@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -19,12 +21,16 @@ public class AnimeService {
     @Autowired
     private AnimeRepository repository;
 
-    //ok
-    public List<Anime> findAll() {
-        return repository.findAll();
+    public List<Anime> findAll(Boolean assistido) {
+        if (assistido == null) {
+            return repository.findAll();
+        } else {
+           return repository.findAll().stream()
+                    .filter(anime -> anime.getAssistido() == assistido)
+                    .collect(Collectors.toList());
+        }
     }
 
-    //ok
     public Anime findById(Long id) {
         Optional<Anime> obj = repository.findById(id);
         return obj.orElseThrow(() -> new ResourceNotFoundException(id));
@@ -37,7 +43,6 @@ public class AnimeService {
         return repository.save(obj);
     }
 
-    //Não está retornando o erro 404 para o put id retornou o 500 ao atualizar id não existente
     @Transactional
     public Anime update(Long id, Anime obj) {
         try {
@@ -59,8 +64,9 @@ public class AnimeService {
     }
 
 
-    //Não está retornando o erro 404 para o delete id, esta retornando o 204 para id não existente
     public void delete(Long id) {
+        Optional<Anime> obj = repository.findById(id);
+        obj.orElseThrow(() -> new ResourceNotFoundException(id));
         repository.deleteById(id);
     }
 
