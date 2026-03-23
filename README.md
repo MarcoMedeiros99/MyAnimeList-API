@@ -15,7 +15,7 @@ API RESTful para gerenciamento de animes favoritos, desenvolvida com Java + Spri
 
 ```bash
 # 1. Clone o repositório
-git clone https://github.com/seu-usuario/MyAnimeList.git
+git clone https://github.com/MarcoMedeiros99/MyAnimeList-API
 
 # 2. Entre na pasta do projeto
 cd MyAnimeList
